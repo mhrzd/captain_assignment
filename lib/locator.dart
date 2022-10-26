@@ -12,6 +12,9 @@ import 'package:captain_assignment/core/user/domain/repositories/user_repository
 import 'package:captain_assignment/core/user/domain/usecases/get_other_users_usecase.dart';
 import 'package:captain_assignment/core/user/domain/usecases/login_user_usecase.dart';
 import 'package:captain_assignment/core/user/domain/usecases/register_new_user_usecase.dart';
+import 'package:captain_assignment/features/admin_home/bloc/admin_bloc.dart';
+import 'package:captain_assignment/features/authentication/bloc/authentication_bloc.dart';
+import 'package:captain_assignment/features/user_home/bloc/user_bloc.dart';
 import 'package:captain_assignment/utils/database/local_database.dart';
 import 'package:get_it/get_it.dart';
 
@@ -24,6 +27,13 @@ void setUp() {
   _setUpBadge();
   _setUpAssignBadge();
   _setUpSources();
+  _setUpBlocs();
+}
+
+void _setUpBlocs() {
+  locator.registerLazySingleton(() => AuthenticationBloc(locator(), locator()));
+  locator.registerLazySingleton(() => UserBloc(locator()));
+  locator.registerLazySingleton(() => AdminBloc(locator()));
 }
 
 void _setUpSources() {
