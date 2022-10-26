@@ -4,7 +4,7 @@ import '../entities/user_entity.dart';
 
 
 abstract class UserRepository {
-  Future<ResponseState> registerUser(UserEntity user);
+  Future<ResponseState<UserEntity>> registerUser(UserEntity user);
   Future<ResponseState<UserEntity>> loginUser(UserEntity user);
   Future<ResponseState<List<UserEntity>>> getAllUsers();
   Future<ResponseState<List<UserEntity>>> getOtherUsers(UserEntity user);

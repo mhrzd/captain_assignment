@@ -13,7 +13,7 @@ class UserRepositoryImpl implements UserRepository {
   }
 
   @override
-  Future<ResponseState> registerUser(UserEntity user) {
+  Future<ResponseState<UserEntity>> registerUser(UserEntity user) {
     return dataSource.registerUser(user);
   }
 

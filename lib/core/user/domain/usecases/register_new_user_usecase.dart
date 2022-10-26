@@ -4,12 +4,12 @@ import 'package:captain_assignment/core/user/domain/repositories/user_repository
 import '../../../../utils/resources/response_state.dart';
 import '../../../../utils/usecase/usecase.dart';
 
-class RegisterNewUserUseCase extends UseCase<ResponseState, UserEntity> {
+class RegisterNewUserUseCase extends UseCase<ResponseState<UserEntity>, UserEntity> {
   final UserRepository repository;
 
   RegisterNewUserUseCase(this.repository);
   @override
-  Future<ResponseState> call(UserEntity params) {
+  Future<ResponseState<UserEntity>> call(UserEntity params) {
     return repository.registerUser(params);
   }
 }
