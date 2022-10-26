@@ -32,7 +32,7 @@ void setUp() {
 
 void _setUpBlocs() {
   locator.registerLazySingleton(() => AuthenticationBloc(locator(), locator()));
-  locator.registerLazySingleton(() => UserBloc(locator()));
+  locator.registerLazySingleton(() => UserBloc(locator(), locator()));
   locator.registerLazySingleton(() => AdminBloc(locator()));
 }
 

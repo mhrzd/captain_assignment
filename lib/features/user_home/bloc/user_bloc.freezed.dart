@@ -235,7 +235,8 @@ mixin _$UserState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<UserEntity> users) loaded,
+    required TResult Function(List<UserEntity> users, List<BadgeEntity> badges)
+        loaded,
     required TResult Function(String error) failed,
   }) =>
       throw _privateConstructorUsedError;
@@ -243,7 +244,7 @@ mixin _$UserState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<UserEntity> users)? loaded,
+    TResult? Function(List<UserEntity> users, List<BadgeEntity> badges)? loaded,
     TResult? Function(String error)? failed,
   }) =>
       throw _privateConstructorUsedError;
@@ -251,7 +252,7 @@ mixin _$UserState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<UserEntity> users)? loaded,
+    TResult Function(List<UserEntity> users, List<BadgeEntity> badges)? loaded,
     TResult Function(String error)? failed,
     required TResult orElse(),
   }) =>
@@ -339,7 +340,8 @@ class _$_Initial implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<UserEntity> users) loaded,
+    required TResult Function(List<UserEntity> users, List<BadgeEntity> badges)
+        loaded,
     required TResult Function(String error) failed,
   }) {
     return initial();
@@ -350,7 +352,7 @@ class _$_Initial implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<UserEntity> users)? loaded,
+    TResult? Function(List<UserEntity> users, List<BadgeEntity> badges)? loaded,
     TResult? Function(String error)? failed,
   }) {
     return initial?.call();
@@ -361,7 +363,7 @@ class _$_Initial implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<UserEntity> users)? loaded,
+    TResult Function(List<UserEntity> users, List<BadgeEntity> badges)? loaded,
     TResult Function(String error)? failed,
     required TResult orElse(),
   }) {
@@ -452,7 +454,8 @@ class _$_Loading implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<UserEntity> users) loaded,
+    required TResult Function(List<UserEntity> users, List<BadgeEntity> badges)
+        loaded,
     required TResult Function(String error) failed,
   }) {
     return loading();
@@ -463,7 +466,7 @@ class _$_Loading implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<UserEntity> users)? loaded,
+    TResult? Function(List<UserEntity> users, List<BadgeEntity> badges)? loaded,
     TResult? Function(String error)? failed,
   }) {
     return loading?.call();
@@ -474,7 +477,7 @@ class _$_Loading implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<UserEntity> users)? loaded,
+    TResult Function(List<UserEntity> users, List<BadgeEntity> badges)? loaded,
     TResult Function(String error)? failed,
     required TResult orElse(),
   }) {
@@ -531,7 +534,7 @@ abstract class _$$_LoadedCopyWith<$Res> {
   factory _$$_LoadedCopyWith(_$_Loaded value, $Res Function(_$_Loaded) then) =
       __$$_LoadedCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<UserEntity> users});
+  $Res call({List<UserEntity> users, List<BadgeEntity> badges});
 }
 
 /// @nodoc
@@ -545,12 +548,17 @@ class __$$_LoadedCopyWithImpl<$Res>
   @override
   $Res call({
     Object? users = null,
+    Object? badges = null,
   }) {
     return _then(_$_Loaded(
       null == users
           ? _value._users
           : users // ignore: cast_nullable_to_non_nullable
               as List<UserEntity>,
+      null == badges
+          ? _value._badges
+          : badges // ignore: cast_nullable_to_non_nullable
+              as List<BadgeEntity>,
     ));
   }
 }
@@ -558,7 +566,9 @@ class __$$_LoadedCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Loaded implements _Loaded {
-  const _$_Loaded(final List<UserEntity> users) : _users = users;
+  const _$_Loaded(final List<UserEntity> users, final List<BadgeEntity> badges)
+      : _users = users,
+        _badges = badges;
 
   final List<UserEntity> _users;
   @override
@@ -567,9 +577,16 @@ class _$_Loaded implements _Loaded {
     return EqualUnmodifiableListView(_users);
   }
 
+  final List<BadgeEntity> _badges;
+  @override
+  List<BadgeEntity> get badges {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_badges);
+  }
+
   @override
   String toString() {
-    return 'UserState.loaded(users: $users)';
+    return 'UserState.loaded(users: $users, badges: $badges)';
   }
 
   @override
@@ -577,12 +594,15 @@ class _$_Loaded implements _Loaded {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Loaded &&
-            const DeepCollectionEquality().equals(other._users, _users));
+            const DeepCollectionEquality().equals(other._users, _users) &&
+            const DeepCollectionEquality().equals(other._badges, _badges));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_users));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_users),
+      const DeepCollectionEquality().hash(_badges));
 
   @JsonKey(ignore: true)
   @override
@@ -595,10 +615,11 @@ class _$_Loaded implements _Loaded {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<UserEntity> users) loaded,
+    required TResult Function(List<UserEntity> users, List<BadgeEntity> badges)
+        loaded,
     required TResult Function(String error) failed,
   }) {
-    return loaded(users);
+    return loaded(users, badges);
   }
 
   @override
@@ -606,10 +627,10 @@ class _$_Loaded implements _Loaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<UserEntity> users)? loaded,
+    TResult? Function(List<UserEntity> users, List<BadgeEntity> badges)? loaded,
     TResult? Function(String error)? failed,
   }) {
-    return loaded?.call(users);
+    return loaded?.call(users, badges);
   }
 
   @override
@@ -617,12 +638,12 @@ class _$_Loaded implements _Loaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<UserEntity> users)? loaded,
+    TResult Function(List<UserEntity> users, List<BadgeEntity> badges)? loaded,
     TResult Function(String error)? failed,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(users);
+      return loaded(users, badges);
     }
     return orElse();
   }
@@ -666,9 +687,11 @@ class _$_Loaded implements _Loaded {
 }
 
 abstract class _Loaded implements UserState {
-  const factory _Loaded(final List<UserEntity> users) = _$_Loaded;
+  const factory _Loaded(
+      final List<UserEntity> users, final List<BadgeEntity> badges) = _$_Loaded;
 
   List<UserEntity> get users;
+  List<BadgeEntity> get badges;
   @JsonKey(ignore: true)
   _$$_LoadedCopyWith<_$_Loaded> get copyWith =>
       throw _privateConstructorUsedError;
@@ -738,7 +761,8 @@ class _$_Failed implements _Failed {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<UserEntity> users) loaded,
+    required TResult Function(List<UserEntity> users, List<BadgeEntity> badges)
+        loaded,
     required TResult Function(String error) failed,
   }) {
     return failed(error);
@@ -749,7 +773,7 @@ class _$_Failed implements _Failed {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<UserEntity> users)? loaded,
+    TResult? Function(List<UserEntity> users, List<BadgeEntity> badges)? loaded,
     TResult? Function(String error)? failed,
   }) {
     return failed?.call(error);
@@ -760,7 +784,7 @@ class _$_Failed implements _Failed {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<UserEntity> users)? loaded,
+    TResult Function(List<UserEntity> users, List<BadgeEntity> badges)? loaded,
     TResult Function(String error)? failed,
     required TResult orElse(),
   }) {

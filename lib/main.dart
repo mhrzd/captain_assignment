@@ -10,6 +10,7 @@ import 'features/authentication/bloc/authentication_bloc.dart';
 import 'features/authentication/pages/log_in_page.dart';
 
 void main() {
+  setUp();
   runApp(const MyApp());
 }
 
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.blueGrey,
       ),
       initialRoute: '/login_page',
       routes: {
