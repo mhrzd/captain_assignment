@@ -27,11 +27,11 @@ class MyApp extends StatelessWidget {
       routes: {
         '/login_page': (context) => BlocProvider<AuthenticationBloc>(
               create: (context) => locator(),
-              child: const LoginPage(),
+              child:  LoginPage(),
             ),
         '/register_page': (context) => BlocProvider<AuthenticationBloc>.value(
               value: locator(),
-              child: RegisterPage(),
+              child: const RegisterPage(),
             ),
         '/admin_page': (context) => BlocProvider<AdminBloc>(
               create: (context) => locator(),

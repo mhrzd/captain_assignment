@@ -1,16 +1,15 @@
+import 'package:captain_assignment/core/user/domain/entities/user_entity.dart';
 import 'package:captain_assignment/features/authentication/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../utils/constants/strings.dart';
+import '../../../utils/snack/snack.dart';
+import '../bloc/authentication_bloc.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class LoginPage extends StatelessWidget {
+  LoginPage({super.key});
 
-  @override
-  createState() => _LoginPage();
-}
-
-class _LoginPage extends State<LoginPage> {
   final TextEditingController usernameTextController = TextEditingController();
   final TextEditingController passwordTextController = TextEditingController();
 
@@ -62,12 +61,44 @@ class _LoginPage extends State<LoginPage> {
             const SizedBox(
               height: 20,
             ),
-            CustomButton(
-              onTap: () {},
-              title: MyStrings.loginText,
-              textColor: Colors.white,
-              buttonColor: Colors.blueGrey,
-              expand: true,
+            BlocConsumer<AuthenticationBloc, AuthenticationState>(
+              listener: (context, state) {
+                state.whenOrNull(
+                  failed: (error) {
+                    Snack().showErrorMessage(context, error);
+                  },
+                  loggedIn: (userEntity) {
+                    if (userEntity.isAdmin) {
+                      Navigator.of(context).pushNamedAndRemoveUntil(
+                          '/admin_page', (Route<dynamic> route) => false);
+                    } else {
+                      Navigator.of(context).pushNamedAndRemoveUntil(
+                          '/user_page', (Route<dynamic> route) => false);
+                    }
+                  },
+                );
+              },
+              builder: (context, state) {
+                return state.maybeWhen(
+                  loading: () => const Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                  orElse: () => CustomButton(
+                    onTap: () {
+                      if (validate(context)) {
+                        context.read<AuthenticationBloc>().add(
+                            AuthenticationEvent.login(UserEntity(
+                                username: usernameTextController.text,
+                                password: passwordTextController.text)));
+                      }
+                    },
+                    title: MyStrings.loginText,
+                    textColor: Colors.white,
+                    buttonColor: Colors.blueGrey,
+                    expand: true,
+                  ),
+                );
+              },
             ),
             const SizedBox(
               height: 20,
@@ -84,5 +115,14 @@ class _LoginPage extends State<LoginPage> {
         ),
       )),
     );
+  }
+
+  bool validate(BuildContext context) {
+    if (usernameTextController.text.isEmpty ||
+        passwordTextController.text.isEmpty) {
+      Snack().showErrorMessage(context, MyStrings.emptyFieldsError);
+      return false;
+    }
+    return true;
   }
 }

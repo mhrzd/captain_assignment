@@ -116,10 +116,11 @@ class _RegisterPageState extends State<RegisterPage> {
                   },
                   loggedIn: (userEntity) {
                     if (userEntity.isAdmin) {
-                      Navigator.pushReplacementNamed(context, '/admin_page');
+                      Navigator.of(context).pushNamedAndRemoveUntil(
+                          '/admin_page', (Route<dynamic> route) => false);
                     } else {
-                      Navigator.pushReplacementNamed(context, '/user_page');
-                      
+                      Navigator.of(context).pushNamedAndRemoveUntil(
+                          '/user_page', (Route<dynamic> route) => false);
                     }
                   },
                 );
