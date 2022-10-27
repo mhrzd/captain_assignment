@@ -25,8 +25,8 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/login_page',
       routes: {
-        '/login_page': (context) => BlocProvider<AuthBloc>(
-              create: (context) => locator(),
+        '/login_page': (context) => BlocProvider<AuthBloc>.value(
+              value: locator(),
               child: LoginPage(),
             ),
         '/register_page': (context) => BlocProvider<AuthBloc>.value(

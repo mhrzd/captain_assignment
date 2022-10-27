@@ -28,4 +28,8 @@ class MyStrings {
   static const String assigningFailed = "Couldn't assign badge! Try again.";
 
   static const String emptyListText = "List is empty!";
+
+  static const String logoutText='Logout';
+
+  static const String backText="Back";
 }

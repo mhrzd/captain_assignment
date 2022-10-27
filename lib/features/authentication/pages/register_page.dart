@@ -27,6 +27,22 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0.0,
+        leading: Tooltip(
+          message: MyStrings.backText,
+          child: IconButton(
+            icon: const Icon(
+              Icons.arrow_back,
+              color: Colors.blueGrey,
+            ),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
+        ),
+      ),
       body: SafeArea(
           child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 30),
@@ -134,7 +150,8 @@ class _RegisterPageState extends State<RegisterPage> {
                       if (validate()) {
                         context.read<AuthBloc>().add(
                             AuthenticationEvent.register(UserEntity(
-                                username: usernameTextController.text,
+                                username:
+                                    usernameTextController.text.toLowerCase(),
                                 password: passwordTextController.text,
                                 isAdmin: isAdmin)));
                       }

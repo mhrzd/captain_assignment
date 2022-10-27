@@ -33,8 +33,8 @@ void setUp() {
 void _setUpBlocs() {
   locator.registerLazySingleton(() => AuthBloc(locator(), locator()));
   locator
-      .registerLazySingleton(() => UserBloc(locator(), locator(), locator()));
-  locator.registerLazySingleton(() => AdminBloc(locator()));
+      .registerFactory(() => UserBloc(locator(), locator(), locator()));
+  locator.registerFactory(() => AdminBloc(locator()));
 }
 
 void _setUpSources() {

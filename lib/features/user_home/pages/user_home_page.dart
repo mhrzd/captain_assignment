@@ -22,6 +22,16 @@ class _UserHomePage extends State<UserHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(MyStrings.userPageTitle),
+        actions: [
+          Tooltip(
+              message: MyStrings.logoutText,
+              child: IconButton(
+                  onPressed: () {
+                    Navigator.of(context).pushNamedAndRemoveUntil(
+                        '/login_page', (Route<dynamic> route) => false);
+                  },
+                  icon: const Icon(Icons.logout)))
+        ],
       ),
       body: SafeArea(
         child: BlocConsumer<UserBloc, UserState>(

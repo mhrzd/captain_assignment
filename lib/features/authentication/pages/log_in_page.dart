@@ -88,7 +88,7 @@ class LoginPage extends StatelessWidget {
                       if (validate(context)) {
                         context.read<AuthBloc>().add(AuthenticationEvent.login(
                             UserEntity(
-                                username: usernameTextController.text,
+                                username: usernameTextController.text.toLowerCase(),
                                 password: passwordTextController.text)));
                       }
                     },

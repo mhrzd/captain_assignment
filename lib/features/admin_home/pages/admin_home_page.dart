@@ -19,6 +19,16 @@ class _AdminHomePage extends State<AdminHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(MyStrings.adminPageTitle),
+        actions: [
+          Tooltip(
+              message: MyStrings.logoutText,
+              child: IconButton(
+                  onPressed: () {
+                    Navigator.of(context).pushNamedAndRemoveUntil(
+                        '/login_page', (Route<dynamic> route) => false);
+                  },
+                  icon: const Icon(Icons.logout)))
+        ],
       ),
       body: SafeArea(
         child: BlocBuilder<AdminBloc, AdminState>(
