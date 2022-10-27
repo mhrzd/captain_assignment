@@ -26,10 +26,10 @@ class LocalDataBaseImpl implements LocalDataBase {
       final Box box = await openHiveBox(MyStrings.userBoxName);
       List<String> data = (await box.get(MyStrings.userBoxName)) ?? [];
       //get data
-      List<UserEntity> tasks =
+      List<UserEntity> users =
           data.map((e) => UserEntity.fromJson(jsonDecode(e))).toList();
-      // map data from json to list of task entity
-      return ResponseState.success(tasks);
+      // map data from json to list of user entity
+      return ResponseState.success(users);
     } catch (e) {
       log(e.toString());
       // on error return failed state
