@@ -24,7 +24,7 @@ class UserDataSource {
 
   Future<ResponseState<UserEntity>> registerUser(UserEntity user) async {
     return localDataBase.checkIfUserExists(user, exists: (u) {
-      return Future.value(ResponseState.failed('User already exists.'));
+      return Future.value(ResponseState.failed('Username already exists.'));
     }, doesNotExist: () async {
       try {
         await localDataBase.saveUser(user);

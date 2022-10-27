@@ -24,7 +24,7 @@ class LocalDataBaseImpl implements LocalDataBase {
   Future<ResponseState<List<UserEntity>>> getAllUsers() async {
     try {
       final Box box = await openHiveBox(MyStrings.userBoxName);
-      List<String> data = (await box.get(MyStrings.userBoxName));
+      List<String> data = (await box.get(MyStrings.userBoxName))??[];
       //get data
       List<UserEntity> tasks =
           data.map((e) => UserEntity.fromJson(jsonDecode(e))).toList();

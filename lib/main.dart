@@ -29,9 +29,9 @@ class MyApp extends StatelessWidget {
               create: (context) => locator(),
               child: const LoginPage(),
             ),
-        '/register_page': (context) => BlocProvider<AuthenticationBloc>(
-              create: (context) => locator(),
-              child: const RegisterPage(),
+        '/register_page': (context) => BlocProvider<AuthenticationBloc>.value(
+              value: locator(),
+              child: RegisterPage(),
             ),
         '/admin_page': (context) => BlocProvider<AdminBloc>(
               create: (context) => locator(),
