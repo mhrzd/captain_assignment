@@ -61,7 +61,7 @@ class LoginPage extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            BlocConsumer<AuthenticationBloc, AuthenticationState>(
+            BlocConsumer<AuthBloc, AuthenticationState>(
               listener: (context, state) {
                 state.whenOrNull(
                   failed: (error) {
@@ -86,8 +86,8 @@ class LoginPage extends StatelessWidget {
                   orElse: () => CustomButton(
                     onTap: () {
                       if (validate(context)) {
-                        context.read<AuthenticationBloc>().add(
-                            AuthenticationEvent.login(UserEntity(
+                        context.read<AuthBloc>().add(AuthenticationEvent.login(
+                            UserEntity(
                                 username: usernameTextController.text,
                                 password: passwordTextController.text)));
                       }

@@ -15,7 +15,7 @@ abstract class LocalDataBase {
       {required Future<ResponseState<T>> Function(UserEntity foundUser) exists,
       required Future<ResponseState<T>> Function() doesNotExist});
 
-  Future<ResponseState> updateUser(UserEntity user);
+  Future<ResponseState<List<UserEntity>>> updateUser(UserEntity user);
 }
 
 class LocalDataBaseImpl implements LocalDataBase {
@@ -24,7 +24,7 @@ class LocalDataBaseImpl implements LocalDataBase {
   Future<ResponseState<List<UserEntity>>> getAllUsers() async {
     try {
       final Box box = await openHiveBox(MyStrings.userBoxName);
-      List<String> data = (await box.get(MyStrings.userBoxName))??[];
+      List<String> data = (await box.get(MyStrings.userBoxName)) ?? [];
       //get data
       List<UserEntity> tasks =
           data.map((e) => UserEntity.fromJson(jsonDecode(e))).toList();
@@ -110,24 +110,26 @@ class LocalDataBaseImpl implements LocalDataBase {
   }
 
   @override
-  Future<ResponseState> updateUser(UserEntity user) {
+  Future<ResponseState<List<UserEntity>>> updateUser(UserEntity user) {
     return checkIfUserExists(
       user,
       exists: (foundUser) async {
+        int? index = (await getAllUsers())
+            .whenOrNull(success: (users) => users.indexOf(foundUser));
         final response = await getAllUsers();
         if (response is SuccessResponse) {
           List<UserEntity> users = (response as SuccessResponse).data;
           // remove user from list
           users.removeWhere((element) => element.username == user.username);
           // add updated user to list
-          users.add(user);
+          users.insert(index ?? 0, user);
           // save updated users list
           final Box box = await openHiveBox(MyStrings.userBoxName);
           box.put(
               MyStrings.userBoxName,
               //convert data to json for saving
               users.map((e) => jsonEncode(e.toJson())).toList());
-          return Future.value(ResponseState.success(true));
+          return Future.value(ResponseState.success(users));
         } else {
           return Future.value(
               ResponseState.failed("Could't get data from database."));

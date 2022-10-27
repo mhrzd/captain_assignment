@@ -16,42 +16,44 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$UserEvent {
-  UserEntity get me => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(UserEntity me) started,
+    required TResult Function(BadgeAssignmentPrams badgeAssignmentPrams)
+        assignBadge,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(UserEntity me)? started,
+    TResult? Function(BadgeAssignmentPrams badgeAssignmentPrams)? assignBadge,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(UserEntity me)? started,
+    TResult Function(BadgeAssignmentPrams badgeAssignmentPrams)? assignBadge,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
+    required TResult Function(_Assign value) assignBadge,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
+    TResult? Function(_Assign value)? assignBadge,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_Assign value)? assignBadge,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $UserEventCopyWith<UserEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -59,10 +61,6 @@ mixin _$UserEvent {
 abstract class $UserEventCopyWith<$Res> {
   factory $UserEventCopyWith(UserEvent value, $Res Function(UserEvent) then) =
       _$UserEventCopyWithImpl<$Res, UserEvent>;
-  @useResult
-  $Res call({UserEntity me});
-
-  $UserEntityCopyWith<$Res> get me;
 }
 
 /// @nodoc
@@ -74,39 +72,16 @@ class _$UserEventCopyWithImpl<$Res, $Val extends UserEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? me = null,
-  }) {
-    return _then(_value.copyWith(
-      me: null == me
-          ? _value.me
-          : me // ignore: cast_nullable_to_non_nullable
-              as UserEntity,
-    ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $UserEntityCopyWith<$Res> get me {
-    return $UserEntityCopyWith<$Res>(_value.me, (value) {
-      return _then(_value.copyWith(me: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
-abstract class _$$_StartedCopyWith<$Res> implements $UserEventCopyWith<$Res> {
+abstract class _$$_StartedCopyWith<$Res> {
   factory _$$_StartedCopyWith(
           _$_Started value, $Res Function(_$_Started) then) =
       __$$_StartedCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call({UserEntity me});
 
-  @override
   $UserEntityCopyWith<$Res> get me;
 }
 
@@ -128,6 +103,14 @@ class __$$_StartedCopyWithImpl<$Res>
           : me // ignore: cast_nullable_to_non_nullable
               as UserEntity,
     ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $UserEntityCopyWith<$Res> get me {
+    return $UserEntityCopyWith<$Res>(_value.me, (value) {
+      return _then(_value.copyWith(me: value));
+    });
   }
 }
 
@@ -165,6 +148,8 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(UserEntity me) started,
+    required TResult Function(BadgeAssignmentPrams badgeAssignmentPrams)
+        assignBadge,
   }) {
     return started(me);
   }
@@ -173,6 +158,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(UserEntity me)? started,
+    TResult? Function(BadgeAssignmentPrams badgeAssignmentPrams)? assignBadge,
   }) {
     return started?.call(me);
   }
@@ -181,6 +167,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(UserEntity me)? started,
+    TResult Function(BadgeAssignmentPrams badgeAssignmentPrams)? assignBadge,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -193,6 +180,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
+    required TResult Function(_Assign value) assignBadge,
   }) {
     return started(this);
   }
@@ -201,6 +189,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
+    TResult? Function(_Assign value)? assignBadge,
   }) {
     return started?.call(this);
   }
@@ -209,6 +198,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_Assign value)? assignBadge,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -221,11 +211,143 @@ class _$_Started implements _Started {
 abstract class _Started implements UserEvent {
   const factory _Started(final UserEntity me) = _$_Started;
 
-  @override
   UserEntity get me;
-  @override
   @JsonKey(ignore: true)
   _$$_StartedCopyWith<_$_Started> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_AssignCopyWith<$Res> {
+  factory _$$_AssignCopyWith(_$_Assign value, $Res Function(_$_Assign) then) =
+      __$$_AssignCopyWithImpl<$Res>;
+  @useResult
+  $Res call({BadgeAssignmentPrams badgeAssignmentPrams});
+}
+
+/// @nodoc
+class __$$_AssignCopyWithImpl<$Res>
+    extends _$UserEventCopyWithImpl<$Res, _$_Assign>
+    implements _$$_AssignCopyWith<$Res> {
+  __$$_AssignCopyWithImpl(_$_Assign _value, $Res Function(_$_Assign) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? badgeAssignmentPrams = null,
+  }) {
+    return _then(_$_Assign(
+      null == badgeAssignmentPrams
+          ? _value.badgeAssignmentPrams
+          : badgeAssignmentPrams // ignore: cast_nullable_to_non_nullable
+              as BadgeAssignmentPrams,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_Assign implements _Assign {
+  const _$_Assign(this.badgeAssignmentPrams);
+
+  @override
+  final BadgeAssignmentPrams badgeAssignmentPrams;
+
+  @override
+  String toString() {
+    return 'UserEvent.assignBadge(badgeAssignmentPrams: $badgeAssignmentPrams)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_Assign &&
+            (identical(other.badgeAssignmentPrams, badgeAssignmentPrams) ||
+                other.badgeAssignmentPrams == badgeAssignmentPrams));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, badgeAssignmentPrams);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_AssignCopyWith<_$_Assign> get copyWith =>
+      __$$_AssignCopyWithImpl<_$_Assign>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(UserEntity me) started,
+    required TResult Function(BadgeAssignmentPrams badgeAssignmentPrams)
+        assignBadge,
+  }) {
+    return assignBadge(badgeAssignmentPrams);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(UserEntity me)? started,
+    TResult? Function(BadgeAssignmentPrams badgeAssignmentPrams)? assignBadge,
+  }) {
+    return assignBadge?.call(badgeAssignmentPrams);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(UserEntity me)? started,
+    TResult Function(BadgeAssignmentPrams badgeAssignmentPrams)? assignBadge,
+    required TResult orElse(),
+  }) {
+    if (assignBadge != null) {
+      return assignBadge(badgeAssignmentPrams);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_Assign value) assignBadge,
+  }) {
+    return assignBadge(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_Assign value)? assignBadge,
+  }) {
+    return assignBadge?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_Assign value)? assignBadge,
+    required TResult orElse(),
+  }) {
+    if (assignBadge != null) {
+      return assignBadge(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Assign implements UserEvent {
+  const factory _Assign(final BadgeAssignmentPrams badgeAssignmentPrams) =
+      _$_Assign;
+
+  BadgeAssignmentPrams get badgeAssignmentPrams;
+  @JsonKey(ignore: true)
+  _$$_AssignCopyWith<_$_Assign> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -238,6 +360,8 @@ mixin _$UserState {
     required TResult Function(List<UserEntity> users, List<BadgeEntity> badges)
         loaded,
     required TResult Function(String error) failed,
+    required TResult Function(List<UserEntity> users, List<BadgeEntity> badges)
+        assignError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -246,6 +370,8 @@ mixin _$UserState {
     TResult? Function()? loading,
     TResult? Function(List<UserEntity> users, List<BadgeEntity> badges)? loaded,
     TResult? Function(String error)? failed,
+    TResult? Function(List<UserEntity> users, List<BadgeEntity> badges)?
+        assignError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -254,6 +380,8 @@ mixin _$UserState {
     TResult Function()? loading,
     TResult Function(List<UserEntity> users, List<BadgeEntity> badges)? loaded,
     TResult Function(String error)? failed,
+    TResult Function(List<UserEntity> users, List<BadgeEntity> badges)?
+        assignError,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -263,6 +391,7 @@ mixin _$UserState {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_Failed value) failed,
+    required TResult Function(_AssignFailed value) assignError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -271,6 +400,7 @@ mixin _$UserState {
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
     TResult? Function(_Failed value)? failed,
+    TResult? Function(_AssignFailed value)? assignError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -279,6 +409,7 @@ mixin _$UserState {
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
     TResult Function(_Failed value)? failed,
+    TResult Function(_AssignFailed value)? assignError,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -343,6 +474,8 @@ class _$_Initial implements _Initial {
     required TResult Function(List<UserEntity> users, List<BadgeEntity> badges)
         loaded,
     required TResult Function(String error) failed,
+    required TResult Function(List<UserEntity> users, List<BadgeEntity> badges)
+        assignError,
   }) {
     return initial();
   }
@@ -354,6 +487,8 @@ class _$_Initial implements _Initial {
     TResult? Function()? loading,
     TResult? Function(List<UserEntity> users, List<BadgeEntity> badges)? loaded,
     TResult? Function(String error)? failed,
+    TResult? Function(List<UserEntity> users, List<BadgeEntity> badges)?
+        assignError,
   }) {
     return initial?.call();
   }
@@ -365,6 +500,8 @@ class _$_Initial implements _Initial {
     TResult Function()? loading,
     TResult Function(List<UserEntity> users, List<BadgeEntity> badges)? loaded,
     TResult Function(String error)? failed,
+    TResult Function(List<UserEntity> users, List<BadgeEntity> badges)?
+        assignError,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -380,6 +517,7 @@ class _$_Initial implements _Initial {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_Failed value) failed,
+    required TResult Function(_AssignFailed value) assignError,
   }) {
     return initial(this);
   }
@@ -391,6 +529,7 @@ class _$_Initial implements _Initial {
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
     TResult? Function(_Failed value)? failed,
+    TResult? Function(_AssignFailed value)? assignError,
   }) {
     return initial?.call(this);
   }
@@ -402,6 +541,7 @@ class _$_Initial implements _Initial {
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
     TResult Function(_Failed value)? failed,
+    TResult Function(_AssignFailed value)? assignError,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -457,6 +597,8 @@ class _$_Loading implements _Loading {
     required TResult Function(List<UserEntity> users, List<BadgeEntity> badges)
         loaded,
     required TResult Function(String error) failed,
+    required TResult Function(List<UserEntity> users, List<BadgeEntity> badges)
+        assignError,
   }) {
     return loading();
   }
@@ -468,6 +610,8 @@ class _$_Loading implements _Loading {
     TResult? Function()? loading,
     TResult? Function(List<UserEntity> users, List<BadgeEntity> badges)? loaded,
     TResult? Function(String error)? failed,
+    TResult? Function(List<UserEntity> users, List<BadgeEntity> badges)?
+        assignError,
   }) {
     return loading?.call();
   }
@@ -479,6 +623,8 @@ class _$_Loading implements _Loading {
     TResult Function()? loading,
     TResult Function(List<UserEntity> users, List<BadgeEntity> badges)? loaded,
     TResult Function(String error)? failed,
+    TResult Function(List<UserEntity> users, List<BadgeEntity> badges)?
+        assignError,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -494,6 +640,7 @@ class _$_Loading implements _Loading {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_Failed value) failed,
+    required TResult Function(_AssignFailed value) assignError,
   }) {
     return loading(this);
   }
@@ -505,6 +652,7 @@ class _$_Loading implements _Loading {
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
     TResult? Function(_Failed value)? failed,
+    TResult? Function(_AssignFailed value)? assignError,
   }) {
     return loading?.call(this);
   }
@@ -516,6 +664,7 @@ class _$_Loading implements _Loading {
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
     TResult Function(_Failed value)? failed,
+    TResult Function(_AssignFailed value)? assignError,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -618,6 +767,8 @@ class _$_Loaded implements _Loaded {
     required TResult Function(List<UserEntity> users, List<BadgeEntity> badges)
         loaded,
     required TResult Function(String error) failed,
+    required TResult Function(List<UserEntity> users, List<BadgeEntity> badges)
+        assignError,
   }) {
     return loaded(users, badges);
   }
@@ -629,6 +780,8 @@ class _$_Loaded implements _Loaded {
     TResult? Function()? loading,
     TResult? Function(List<UserEntity> users, List<BadgeEntity> badges)? loaded,
     TResult? Function(String error)? failed,
+    TResult? Function(List<UserEntity> users, List<BadgeEntity> badges)?
+        assignError,
   }) {
     return loaded?.call(users, badges);
   }
@@ -640,6 +793,8 @@ class _$_Loaded implements _Loaded {
     TResult Function()? loading,
     TResult Function(List<UserEntity> users, List<BadgeEntity> badges)? loaded,
     TResult Function(String error)? failed,
+    TResult Function(List<UserEntity> users, List<BadgeEntity> badges)?
+        assignError,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -655,6 +810,7 @@ class _$_Loaded implements _Loaded {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_Failed value) failed,
+    required TResult Function(_AssignFailed value) assignError,
   }) {
     return loaded(this);
   }
@@ -666,6 +822,7 @@ class _$_Loaded implements _Loaded {
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
     TResult? Function(_Failed value)? failed,
+    TResult? Function(_AssignFailed value)? assignError,
   }) {
     return loaded?.call(this);
   }
@@ -677,6 +834,7 @@ class _$_Loaded implements _Loaded {
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
     TResult Function(_Failed value)? failed,
+    TResult Function(_AssignFailed value)? assignError,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -764,6 +922,8 @@ class _$_Failed implements _Failed {
     required TResult Function(List<UserEntity> users, List<BadgeEntity> badges)
         loaded,
     required TResult Function(String error) failed,
+    required TResult Function(List<UserEntity> users, List<BadgeEntity> badges)
+        assignError,
   }) {
     return failed(error);
   }
@@ -775,6 +935,8 @@ class _$_Failed implements _Failed {
     TResult? Function()? loading,
     TResult? Function(List<UserEntity> users, List<BadgeEntity> badges)? loaded,
     TResult? Function(String error)? failed,
+    TResult? Function(List<UserEntity> users, List<BadgeEntity> badges)?
+        assignError,
   }) {
     return failed?.call(error);
   }
@@ -786,6 +948,8 @@ class _$_Failed implements _Failed {
     TResult Function()? loading,
     TResult Function(List<UserEntity> users, List<BadgeEntity> badges)? loaded,
     TResult Function(String error)? failed,
+    TResult Function(List<UserEntity> users, List<BadgeEntity> badges)?
+        assignError,
     required TResult orElse(),
   }) {
     if (failed != null) {
@@ -801,6 +965,7 @@ class _$_Failed implements _Failed {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_Failed value) failed,
+    required TResult Function(_AssignFailed value) assignError,
   }) {
     return failed(this);
   }
@@ -812,6 +977,7 @@ class _$_Failed implements _Failed {
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
     TResult? Function(_Failed value)? failed,
+    TResult? Function(_AssignFailed value)? assignError,
   }) {
     return failed?.call(this);
   }
@@ -823,6 +989,7 @@ class _$_Failed implements _Failed {
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
     TResult Function(_Failed value)? failed,
+    TResult Function(_AssignFailed value)? assignError,
     required TResult orElse(),
   }) {
     if (failed != null) {
@@ -838,5 +1005,186 @@ abstract class _Failed implements UserState {
   String get error;
   @JsonKey(ignore: true)
   _$$_FailedCopyWith<_$_Failed> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_AssignFailedCopyWith<$Res> {
+  factory _$$_AssignFailedCopyWith(
+          _$_AssignFailed value, $Res Function(_$_AssignFailed) then) =
+      __$$_AssignFailedCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<UserEntity> users, List<BadgeEntity> badges});
+}
+
+/// @nodoc
+class __$$_AssignFailedCopyWithImpl<$Res>
+    extends _$UserStateCopyWithImpl<$Res, _$_AssignFailed>
+    implements _$$_AssignFailedCopyWith<$Res> {
+  __$$_AssignFailedCopyWithImpl(
+      _$_AssignFailed _value, $Res Function(_$_AssignFailed) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? users = null,
+    Object? badges = null,
+  }) {
+    return _then(_$_AssignFailed(
+      null == users
+          ? _value._users
+          : users // ignore: cast_nullable_to_non_nullable
+              as List<UserEntity>,
+      null == badges
+          ? _value._badges
+          : badges // ignore: cast_nullable_to_non_nullable
+              as List<BadgeEntity>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_AssignFailed implements _AssignFailed {
+  const _$_AssignFailed(
+      final List<UserEntity> users, final List<BadgeEntity> badges)
+      : _users = users,
+        _badges = badges;
+
+  final List<UserEntity> _users;
+  @override
+  List<UserEntity> get users {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_users);
+  }
+
+  final List<BadgeEntity> _badges;
+  @override
+  List<BadgeEntity> get badges {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_badges);
+  }
+
+  @override
+  String toString() {
+    return 'UserState.assignError(users: $users, badges: $badges)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_AssignFailed &&
+            const DeepCollectionEquality().equals(other._users, _users) &&
+            const DeepCollectionEquality().equals(other._badges, _badges));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_users),
+      const DeepCollectionEquality().hash(_badges));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_AssignFailedCopyWith<_$_AssignFailed> get copyWith =>
+      __$$_AssignFailedCopyWithImpl<_$_AssignFailed>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(List<UserEntity> users, List<BadgeEntity> badges)
+        loaded,
+    required TResult Function(String error) failed,
+    required TResult Function(List<UserEntity> users, List<BadgeEntity> badges)
+        assignError,
+  }) {
+    return assignError(users, badges);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(List<UserEntity> users, List<BadgeEntity> badges)? loaded,
+    TResult? Function(String error)? failed,
+    TResult? Function(List<UserEntity> users, List<BadgeEntity> badges)?
+        assignError,
+  }) {
+    return assignError?.call(users, badges);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(List<UserEntity> users, List<BadgeEntity> badges)? loaded,
+    TResult Function(String error)? failed,
+    TResult Function(List<UserEntity> users, List<BadgeEntity> badges)?
+        assignError,
+    required TResult orElse(),
+  }) {
+    if (assignError != null) {
+      return assignError(users, badges);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Failed value) failed,
+    required TResult Function(_AssignFailed value) assignError,
+  }) {
+    return assignError(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_Failed value)? failed,
+    TResult? Function(_AssignFailed value)? assignError,
+  }) {
+    return assignError?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Loaded value)? loaded,
+    TResult Function(_Failed value)? failed,
+    TResult Function(_AssignFailed value)? assignError,
+    required TResult orElse(),
+  }) {
+    if (assignError != null) {
+      return assignError(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _AssignFailed implements UserState {
+  const factory _AssignFailed(
+          final List<UserEntity> users, final List<BadgeEntity> badges) =
+      _$_AssignFailed;
+
+  List<UserEntity> get users;
+  List<BadgeEntity> get badges;
+  @JsonKey(ignore: true)
+  _$$_AssignFailedCopyWith<_$_AssignFailed> get copyWith =>
       throw _privateConstructorUsedError;
 }

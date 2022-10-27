@@ -11,8 +11,7 @@ part 'authentication_event.dart';
 part 'authentication_state.dart';
 part 'authentication_bloc.freezed.dart';
 
-class AuthenticationBloc
-    extends Bloc<AuthenticationEvent, AuthenticationState> {
+class AuthBloc extends Bloc<AuthenticationEvent, AuthenticationState> {
   final RegisterNewUserUseCase registerNewUserUseCase;
   final LoginUserUseCase loginUserUseCase;
 
@@ -20,7 +19,7 @@ class AuthenticationBloc
 
   UserEntity? get user => _user;
 
-  AuthenticationBloc(this.registerNewUserUseCase, this.loginUserUseCase)
+  AuthBloc(this.registerNewUserUseCase, this.loginUserUseCase)
       : super(const _Initial()) {
     on<LoginEvent>(
         (event, emit) => _eventHandler(emit, event, useCase: loginUserUseCase));

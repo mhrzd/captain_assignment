@@ -1,24 +1,33 @@
+import 'dart:async';
+
+import 'package:captain_assignment/core/assign_badge/domain/entities/assign_badge_entity.dart';
 import 'package:captain_assignment/utils/database/local_database.dart';
 import 'package:captain_assignment/utils/resources/response_state.dart';
 
+import '../../../user/domain/entities/user_entity.dart';
 import '../../domain/entities/badge_assignment_params.dart';
 
 class AssignBadgeDataSource {
   final LocalDataBase localDataBase;
 
   AssignBadgeDataSource(this.localDataBase);
-  Future<ResponseState> assignBadge(BadgeAssignmentPrams badgeAssignmentPrams) {
+  Future<ResponseState<List<UserEntity>>> assignBadge(
+      BadgeAssignmentPrams badgeAssignmentPrams) {
     return localDataBase.checkIfUserExists(
       badgeAssignmentPrams.user,
       exists: (foundUser) {
-        // remove the badge (if exists) that logged in user assigned to this user.
-        foundUser.badges.removeWhere((element) =>
-            element.assignedFromUsername ==
-            badgeAssignmentPrams.assigningBadge.assignedFromUsername);
-        // assign new badge to user
-        foundUser.badges.add(badgeAssignmentPrams.assigningBadge);
+        List<AssignBadgeEntity> updatedBadges = [];
+        // add all badges to updated badges except 
+        // the badge that logged in user assigned to this user (if exists).
+        updatedBadges.addAll(foundUser.badges.where((element) =>
+            element.assignedFromUsername !=
+            badgeAssignmentPrams.assigningBadge.assignedFromUsername));
+        // add new badge to updated badges
+        updatedBadges.add(badgeAssignmentPrams.assigningBadge);
+        // create updated user with same data but with new updated badges
+        UserEntity updatedUser = foundUser.copyWith(badges: updatedBadges);
         // update user in database
-        return localDataBase.updateUser(foundUser);
+        return localDataBase.updateUser(updatedUser);
       },
       doesNotExist: () {
         return Future.value(ResponseState.failed('User not found!'));

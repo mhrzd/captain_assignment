@@ -25,11 +25,11 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/login_page',
       routes: {
-        '/login_page': (context) => BlocProvider<AuthenticationBloc>(
+        '/login_page': (context) => BlocProvider<AuthBloc>(
               create: (context) => locator(),
-              child:  LoginPage(),
+              child: LoginPage(),
             ),
-        '/register_page': (context) => BlocProvider<AuthenticationBloc>.value(
+        '/register_page': (context) => BlocProvider<AuthBloc>.value(
               value: locator(),
               child: const RegisterPage(),
             ),
@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
               BlocProvider<UserBloc>(
                 create: (context) => locator(),
               ),
-              BlocProvider<AuthenticationBloc>.value(value: locator()),
+              BlocProvider<AuthBloc>.value(value: locator()),
             ], child: const UserHomePage())
       },
     );

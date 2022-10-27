@@ -108,7 +108,7 @@ class _RegisterPageState extends State<RegisterPage> {
             const SizedBox(
               height: 20,
             ),
-            BlocConsumer<AuthenticationBloc, AuthenticationState>(
+            BlocConsumer<AuthBloc, AuthenticationState>(
               listener: (context, state) {
                 state.whenOrNull(
                   failed: (error) {
@@ -132,7 +132,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   orElse: () => CustomButton(
                     onTap: () {
                       if (validate()) {
-                        context.read<AuthenticationBloc>().add(
+                        context.read<AuthBloc>().add(
                             AuthenticationEvent.register(UserEntity(
                                 username: usernameTextController.text,
                                 password: passwordTextController.text,

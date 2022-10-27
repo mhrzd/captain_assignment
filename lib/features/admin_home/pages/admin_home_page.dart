@@ -1,3 +1,4 @@
+import 'package:captain_assignment/utils/constants/strings.dart';
 import 'package:flutter/material.dart';
 
 class AdminHomePage extends StatefulWidget {
@@ -11,7 +12,9 @@ class _AdminHomePage extends State<AdminHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: const Text(MyStrings.adminPageTitle),
+      ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [Text('admin page')],

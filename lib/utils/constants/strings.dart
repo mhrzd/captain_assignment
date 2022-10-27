@@ -15,7 +15,15 @@ class MyStrings {
 
   static const String passwordReenterHintText = 'Re-enter password';
 
-  static const String emptyFieldsError='Please fill out empty fields.';
+  static const String emptyFieldsError = 'Please fill out empty fields.';
 
-  static const String passwordReenterError='Password and re-entered password are different.';
+  static const String passwordReenterError =
+      'Password and re-entered password are different.';
+
+  static const String userPageTitle = 'User Page';
+  static const String adminPageTitle = 'Admin Page';
+
+  static const String retryText = 'Retry';
+
+  static const String assigningFailed="Couldn't assign badge! Try again.";
 }
