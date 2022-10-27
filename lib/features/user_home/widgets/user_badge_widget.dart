@@ -10,39 +10,43 @@ import '../bloc/user_bloc.dart';
 
 class UserBadgeWidget extends StatelessWidget {
   const UserBadgeWidget({
-    super.key, required this.badges, required this.user,
-
+    super.key,
+    required this.badges,
+    required this.user,
   });
   final List<BadgeEntity> badges;
   final UserEntity user;
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: ListTile(
-        title: Text(user.username),
-        trailing: DropdownButton(
-            underline: const SizedBox(),
-            items: badges
-                .map((e) => DropdownMenuItem(
-                      value: e,
-                      child: Text(e.name),
-                    ))
-                .toList(),
-            value: context
-                .read<UserBloc>()
-                .myBadge(user, context.read<AuthBloc>().myUser!),
-            onChanged: (v) {
-              if (v != null) {
-                context.read<UserBloc>().add(UserEvent.assignBadge(
-                    BadgeAssignmentPrams(
-                        user: user,
-                        assigningBadge: AssignBadgeEntity(
-                            assignedFromUsername:
-                                context.read<AuthBloc>().myUser!.username,
-                            badge: v))));
-              }
-            }),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+      child: Card(
+        child: ListTile(
+          title: Text(user.username),
+          trailing: DropdownButton(
+              underline: const SizedBox(),
+              items: badges
+                  .map((e) => DropdownMenuItem(
+                        value: e,
+                        child: Text(e.name),
+                      ))
+                  .toList(),
+              value: context
+                  .read<UserBloc>()
+                  .myBadge(user, context.read<AuthBloc>().myUser!),
+              onChanged: (v) {
+                if (v != null) {
+                  context.read<UserBloc>().add(UserEvent.assignBadge(
+                      BadgeAssignmentPrams(
+                          user: user,
+                          assigningBadge: AssignBadgeEntity(
+                              assignedFromUsername:
+                                  context.read<AuthBloc>().myUser!.username,
+                              badge: v))));
+                }
+              }),
+        ),
       ),
     );
   }
