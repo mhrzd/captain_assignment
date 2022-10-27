@@ -9,25 +9,28 @@ class BadgeCountWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          ListTile(
-            title: Text(user.username),
-          ),
-          const Divider(
-            height: 1,
-          ),
-          Wrap(
-            alignment: WrapAlignment.start,
-            crossAxisAlignment: WrapCrossAlignment.start,
-            children: getDistinctBadges(user.badges)
-                .map((badge) => _BadgeWithCount(
-                    badge: badge, count: getBadgeCount(badge, user.badges)))
-                .toList(),
-          )
-        ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+      child: Card(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ListTile(
+              title: Text(user.username),
+            ),
+            const Divider(
+              height: 1,
+            ),
+            Wrap(
+              alignment: WrapAlignment.start,
+              crossAxisAlignment: WrapCrossAlignment.start,
+              children: getDistinctBadges(user.badges)
+                  .map((badge) => _BadgeWithCount(
+                      badge: badge, count: getBadgeCount(badge, user.badges)))
+                  .toList(),
+            )
+          ],
+        ),
       ),
     );
   }
