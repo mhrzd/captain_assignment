@@ -25,5 +25,7 @@ class MyStrings {
 
   static const String retryText = 'Retry';
 
-  static const String assigningFailed="Couldn't assign badge! Try again.";
+  static const String assigningFailed = "Couldn't assign badge! Try again.";
+
+  static const String emptyListText = "List is empty!";
 }

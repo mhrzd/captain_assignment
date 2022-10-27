@@ -54,7 +54,7 @@ class UserDataSource {
     if (response is SuccessResponse) {
       // remove the user itself
       ((response as SuccessResponse).data as List<UserEntity>)
-          .removeWhere((element) => me == element);
+          .removeWhere((element) => me.username == element.username);
       // returning every other users
       return ResponseState.success((response as SuccessResponse).data);
     }

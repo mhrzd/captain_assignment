@@ -79,38 +79,43 @@ class _UserHomePage extends State<UserHomePage> {
     );
   }
 
-  ListView _ListOfUsers(List<UserEntity> users, List<BadgeEntity> badges) {
-    return ListView.builder(
-      itemCount: users.length,
-      itemBuilder: (context, index) {
-        return Card(
-          child: ListTile(
-            title: Text(users[index].username),
-            trailing: DropdownButton(
-                underline: const SizedBox(),
-                items: badges
-                    .map((e) => DropdownMenuItem(
-                          value: e,
-                          child: Text(e.name),
-                        ))
-                    .toList(),
-                value: context
-                    .read<UserBloc>()
-                    .myBadge(users[index], context.read<AuthBloc>().user!),
-                onChanged: (v) {
-                  if (v != null) {
-                    context.read<UserBloc>().add(UserEvent.assignBadge(
-                        BadgeAssignmentPrams(
-                            user: users[index],
-                            assigningBadge: AssignBadgeEntity(
-                                assignedFromUsername:
-                                    context.read<AuthBloc>().user!.username,
-                                badge: v))));
-                  }
-                }),
-          ),
-        );
-      },
-    );
+  Widget _ListOfUsers(List<UserEntity> users, List<BadgeEntity> badges) {
+    return users.isEmpty
+        ? Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [Center(child: Text(MyStrings.emptyListText))])
+        : ListView.builder(
+            itemCount: users.length,
+            itemBuilder: (context, index) {
+              return Card(
+                child: ListTile(
+                  title: Text(users[index].username),
+                  trailing: DropdownButton(
+                      underline: const SizedBox(),
+                      items: badges
+                          .map((e) => DropdownMenuItem(
+                                value: e,
+                                child: Text(e.name),
+                              ))
+                          .toList(),
+                      value: context.read<UserBloc>().myBadge(
+                          users[index], context.read<AuthBloc>().user!),
+                      onChanged: (v) {
+                        if (v != null) {
+                          context.read<UserBloc>().add(UserEvent.assignBadge(
+                              BadgeAssignmentPrams(
+                                  user: users[index],
+                                  assigningBadge: AssignBadgeEntity(
+                                      assignedFromUsername: context
+                                          .read<AuthBloc>()
+                                          .user!
+                                          .username,
+                                      badge: v))));
+                        }
+                      }),
+                ),
+              );
+            },
+          );
   }
 }
