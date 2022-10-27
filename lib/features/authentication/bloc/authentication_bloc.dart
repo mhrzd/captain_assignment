@@ -17,7 +17,7 @@ class AuthBloc extends Bloc<AuthenticationEvent, AuthenticationState> {
 
   UserEntity? _user;
 
-  UserEntity? get user => _user;
+  UserEntity? get myUser => _user;
 
   AuthBloc(this.registerNewUserUseCase, this.loginUserUseCase)
       : super(const _Initial()) {

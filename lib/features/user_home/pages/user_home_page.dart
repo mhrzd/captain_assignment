@@ -39,7 +39,7 @@ class _UserHomePage extends State<UserHomePage> {
                 // get other users
                 context
                     .read<UserBloc>()
-                    .add(UserEvent.started(context.read<AuthBloc>().user!));
+                    .add(UserEvent.started(context.read<AuthBloc>().myUser!));
                 return const SizedBox();
               },
               // showing circular progress indicator on loading
@@ -64,8 +64,8 @@ class _UserHomePage extends State<UserHomePage> {
                         )),
                     onTap: () =>
                         //retry getting users
-                        context.read<UserBloc>().add(
-                            UserEvent.started(context.read<AuthBloc>().user!)),
+                        context.read<UserBloc>().add(UserEvent.started(
+                            context.read<AuthBloc>().myUser!)),
                   ),
                 ],
               ),
@@ -99,7 +99,7 @@ class _UserHomePage extends State<UserHomePage> {
                               ))
                           .toList(),
                       value: context.read<UserBloc>().myBadge(
-                          users[index], context.read<AuthBloc>().user!),
+                          users[index], context.read<AuthBloc>().myUser!),
                       onChanged: (v) {
                         if (v != null) {
                           context.read<UserBloc>().add(UserEvent.assignBadge(
@@ -108,7 +108,7 @@ class _UserHomePage extends State<UserHomePage> {
                                   assigningBadge: AssignBadgeEntity(
                                       assignedFromUsername: context
                                           .read<AuthBloc>()
-                                          .user!
+                                          .myUser!
                                           .username,
                                       badge: v))));
                         }
