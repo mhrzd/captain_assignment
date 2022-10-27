@@ -15,9 +15,9 @@ class AssignBadgeDataSource {
       BadgeAssignmentPrams badgeAssignmentPrams) {
     return localDataBase.checkIfUserExists(
       badgeAssignmentPrams.user,
-      exists: (foundUser) {
+      exists: (foundUser) async {
         List<AssignBadgeEntity> updatedBadges = [];
-        // add all badges to updated badges except 
+        // add all badges to updated badges except
         // the badge that logged in user assigned to this user (if exists).
         updatedBadges.addAll(foundUser.badges.where((element) =>
             element.assignedFromUsername !=
@@ -27,7 +27,19 @@ class AssignBadgeDataSource {
         // create updated user with same data but with new updated badges
         UserEntity updatedUser = foundUser.copyWith(badges: updatedBadges);
         // update user in database
-        return localDataBase.updateUser(updatedUser);
+        return (await localDataBase.updateUser(updatedUser)).when(
+          success: (data) {
+            // return other users to update the list
+            return ResponseState.success((data as List<UserEntity>)
+                .where((element) =>
+                    element.username !=
+                    badgeAssignmentPrams.assigningBadge.assignedFromUsername)
+                .toList());
+          },
+          failed: (error) {
+            return ResponseState.failed(error);
+          },
+        );
       },
       doesNotExist: () {
         return Future.value(ResponseState.failed('User not found!'));

@@ -1,5 +1,3 @@
-import 'package:captain_assignment/core/assign_badge/domain/entities/assign_badge_entity.dart';
-import 'package:captain_assignment/core/assign_badge/domain/entities/badge_assignment_params.dart';
 import 'package:captain_assignment/core/user/domain/entities/user_entity.dart';
 import 'package:captain_assignment/core/badge/domain/entities/badge_entity.dart';
 import 'package:captain_assignment/utils/constants/strings.dart';
@@ -9,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../authentication/bloc/authentication_bloc.dart';
 import '../bloc/user_bloc.dart';
+import '../widgets/user_badge_widget.dart';
 
 class UserHomePage extends StatefulWidget {
   const UserHomePage({super.key});
@@ -83,38 +82,11 @@ class _UserHomePage extends State<UserHomePage> {
     return users.isEmpty
         ? Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [Center(child: Text(MyStrings.emptyListText))])
+            children: const [Center(child: Text(MyStrings.emptyListText))])
         : ListView.builder(
             itemCount: users.length,
             itemBuilder: (context, index) {
-              return Card(
-                child: ListTile(
-                  title: Text(users[index].username),
-                  trailing: DropdownButton(
-                      underline: const SizedBox(),
-                      items: badges
-                          .map((e) => DropdownMenuItem(
-                                value: e,
-                                child: Text(e.name),
-                              ))
-                          .toList(),
-                      value: context.read<UserBloc>().myBadge(
-                          users[index], context.read<AuthBloc>().myUser!),
-                      onChanged: (v) {
-                        if (v != null) {
-                          context.read<UserBloc>().add(UserEvent.assignBadge(
-                              BadgeAssignmentPrams(
-                                  user: users[index],
-                                  assigningBadge: AssignBadgeEntity(
-                                      assignedFromUsername: context
-                                          .read<AuthBloc>()
-                                          .myUser!
-                                          .username,
-                                      badge: v))));
-                        }
-                      }),
-                ),
-              );
+              return UserBadgeWidget(user: users[index], badges: badges);
             },
           );
   }
